@@ -91,14 +91,31 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
 
       {/* Book modal */}
       {selectedLetter && (
-        <div className="relative z-[9999]">
-          <BookModal
-            letter={selectedLetter}
-            onClose={() => setSelectedLetter(null)}
-            onDelete={onDeleteLetter}
-            userRole={userRole}
-          />
-       </div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative z-60">
+            <h3 className="text-xl font-semibold mb-2">{selectedLetter.title}</h3>
+            <p className="text-gray-700 mb-4 whitespace-pre-line">{selectedLetter.content}</p>
+            <div className="flex justify-end space-x-2">
+              {userRole === 'admin' && (
+                <button
+                  onClick={() => {
+                   onDeleteLetter(selectedLetter.id);
+                    setSelectedLetter(null);
+                  }}
+                  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                 Delete
+                </button>
+              )}
+              <button
+                onClick={() => setSelectedLetter(null)}
+                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
