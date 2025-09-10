@@ -40,9 +40,6 @@ export default function Book({ letter, onClick, delay = 0 }: BookProps) {
         {/* Enhanced book spine texture */}
         <div className="absolute inset-0 rounded-sm opacity-30 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
         
-        {/* Gold spine trim */}
-        <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-amber-400 via-amber-500 to-amber-400" />
-        
         {/* More detailed stitching */}
         <div className="absolute left-1 top-3 bottom-3 w-px bg-amber-400/50" />
         <div className="absolute right-1 top-3 bottom-3 w-px bg-amber-400/50" />
@@ -50,13 +47,13 @@ export default function Book({ letter, onClick, delay = 0 }: BookProps) {
         <div className="absolute right-2 top-4 bottom-4 w-px bg-amber-300/30" />
         
         {/* Roman numeral */}
-        <div className="absolute inset-0 flex items-end justify-center pb-3">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="transform -rotate-90 origin-center">
-            <span 
+            <span
               className={`text-sm font-serif font-bold tracking-wider ${
                 isWelcome ? 'text-amber-200' : 'text-amber-300'
               } drop-shadow-md`}
-              style={{ 
+              style={{
                 textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
                 fontSize: isWelcome ? '10px' : '12px',
                 letterSpacing: '1px'
