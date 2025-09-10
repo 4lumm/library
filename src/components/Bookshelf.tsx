@@ -91,12 +91,14 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
 
       {/* Book modal */}
       {selectedLetter && (
-        <BookModal
-          letter={selectedLetter}
-          onClose={() => setSelectedLetter(null)}
-          onDelete={onDeleteLetter}
-          userRole={userRole}
-        />
+        <div className="relative z-[9999]">
+          <BookModal
+            letter={selectedLetter}
+            onClose={() => setSelectedLetter(null)}
+            onDelete={onDeleteLetter}
+            userRole={userRole}
+          />
+       </div>
       )}
     </>
   );
