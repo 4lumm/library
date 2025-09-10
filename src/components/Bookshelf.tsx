@@ -91,23 +91,47 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
 
       {/* Book modal */}
       {selectedLetter && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="relative w-[90%] max-w-4xl h-[90vh] bg-gradient-to-r from-amber-50 to-amber-100 shadow-2xl rounded-xl overflow-hidden border-4 border-amber-700 flex">
-            {/* Left Page */}
-            <div className="w-1/2 p-8 font-serif text-amber-900 bg-amber-50 relative overflow-y-auto h-full">
-              <h3 className="text-2xl font-bold mb-4">{selectedLetter.title}</h3>
-              <p className="whitespace-pre-line leading-relaxed">{selectedLetter.content}</p>
-            </div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full relative">
+            <div className="grid grid-cols-2 gap-8 bg-amber-50 p-8 rounded-lg shadow-inner min-h-[500px] max-h-[700px]">
+              {/* Left Page */}
+              <div className="relative bg-white/90 rounded-lg p-6 shadow-md border border-amber-200 flex flex-col">
+                <h3 className="text-2xl font-serif font-bold text-amber-900 mb-4 text-center">
+                  {selectedLetter.title}
+                </h3>
+                <p className="text-gray-700 font-serif text-lg leading-relaxed whitespace-pre-line overflow-y-auto pr-2 flex-grow">
+                  {selectedLetter.content}
+                </p>
 
-            {/* Spine */}
-            <div className="w-1 bg-amber-700 shadow-inner" />
+               {/* Buttons row */}
+                <div className="flex justify-center space-x-4 mt-6">
+                  {userRole === 'admin' && (
+                    <button
+                      onClick={() => {
+                        onDeleteLetter(selectedLetter.id);
+                        setSelectedLetter(null);
+                      }}
+                      className="px-6 py-2 bg-red-600 text-white font-serif font-semibold clip-path-bookmark shadow-md hover:bg-red-700 transition"
+                    >
+                      Delete
+                    </button>
+                  )}
+                  <button
+                    onClick={() => setSelectedLetter(null)}
+                    className="px-6 py-2 bg-gray-600 text-white font-serif font-semibold clip-path-bookmark shadow-md hover:bg-gray-700 transition"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
 
-            {/* Right Page */}
-      <div className="w-1/2 p-8 font-serif text-amber-900 bg-amber-50 flex flex-col justify-between relative overflow-y-auto h-full">
-        <div>
-          <h4 className="italic text-amber-800 mb-6">~ {selectedLetter.author}</h4>
-          <p className="text-sm text-amber-700">
-            {new Date(selectedLetter.createdAt).toLocaleDateString()}
+        {/* Right Page */}
+        <div className="relative bg-white/80 rounded-lg p-6 shadow-md border border-amber-200">
+          <p className="text-sm text-gray-500 italic">
+            Written by: {selectedLetter.author}
+          </p>
+          <p className="text-sm text-gray-400 mt-2">
+            {new Date(selectedLetter.createdAt).toLocaleString()}
           </p>
         </div>
 
