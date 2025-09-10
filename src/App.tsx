@@ -9,11 +9,7 @@ const WELCOME_LETTER: Letter = {
   title: 'Welcome to the Library',
   content: `My Dearest Love,
 
-Welcome to our private sanctuary—a magical library where every book holds a piece of our story. Each letter you find here is a treasure, carefully preserved like pressed flowers between pages of time.
-
-This quiet corner of the world belongs to us alone, where words become bridges between hearts and thoughts transform into keepsakes. As you explore these shelves, know that every book represents a moment, a feeling, a whispered secret meant only for you.
-
-Let this be our haven, where love stories are written in golden ink and memories rest safely in leather-bound volumes. Here, in the soft glow of candlelight and the gentle embrace of worn wood, our love finds its perfect home.
+This is a place where a collection of thoughts, feelings, and memories stored within the pages of carefully crafted letters. Each book on these shelves represents a moment shared, a memory captured, and a story written just for you.
 
 With all my heart,
 Forever yours`,
@@ -23,7 +19,7 @@ Forever yours`,
 };
 
 const USERS: User[] = [
-  { username: 'Zuriel', password: 'Test', role: 'admin' },
+  { username: 'Library Keeper', password: 'Test', role: 'admin' },
   { username: 'Marian', password: 'Test', role: 'viewer' }
 ];
 
@@ -121,7 +117,7 @@ function App() {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <BookOpen className="text-amber-700 w-8 h-8" />
-            <h1 className="text-2xl font-serif text-amber-900">The Quiet Library</h1>
+            <h1 className="text-2xl font-serif text-amber-900">The Library</h1>
           </div>
           <div className="flex items-center space-x-4">
             <span className="text-amber-800 font-medium">

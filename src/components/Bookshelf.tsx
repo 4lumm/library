@@ -90,19 +90,19 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
       </div>
 
       {/* Book modal */}
-{selectedLetter && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-    <div className="relative w-[90%] max-w-4xl h-[90vh] bg-gradient-to-r from-amber-50 to-amber-100 shadow-2xl rounded-xl overflow-hidden border-4 border-amber-700 flex">
-      {/* Left Page */}
-      <div className="w-1/2 p-8 font-serif text-amber-900 bg-amber-50 relative overflow-y-auto h-full">
-        <h3 className="text-2xl font-bold mb-4">{selectedLetter.title}</h3>
-        <p className="whitespace-pre-line leading-relaxed">{selectedLetter.content}</p>
-      </div>
+      {selectedLetter && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="relative w-[90%] max-w-4xl h-[90vh] bg-gradient-to-r from-amber-50 to-amber-100 shadow-2xl rounded-xl overflow-hidden border-4 border-amber-700 flex">
+            {/* Left Page */}
+            <div className="w-1/2 p-8 font-serif text-amber-900 bg-amber-50 relative overflow-y-auto h-full">
+              <h3 className="text-2xl font-bold mb-4">{selectedLetter.title}</h3>
+              <p className="whitespace-pre-line leading-relaxed">{selectedLetter.content}</p>
+            </div>
 
-      {/* Spine */}
-      <div className="w-1 bg-amber-700 shadow-inner" />
+            {/* Spine */}
+            <div className="w-1 bg-amber-700 shadow-inner" />
 
-      {/* Right Page */}
+            {/* Right Page */}
       <div className="w-1/2 p-8 font-serif text-amber-900 bg-amber-50 flex flex-col justify-between relative overflow-y-auto h-full">
         <div>
           <h4 className="italic text-amber-800 mb-6">~ {selectedLetter.author}</h4>
@@ -111,30 +111,32 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
           </p>
         </div>
 
-        {/* Buttons pinned to bottom */}
-        <div className="flex justify-end space-x-3 mt-6 sticky bottom-0 bg-amber-50 pt-4">
+        {/* Bookmark Buttons */}
+        <div className="absolute top-0 right-6 flex flex-col space-y-3">
           {userRole === 'admin' && (
             <button
               onClick={() => {
                 onDeleteLetter(selectedLetter.id);
                 setSelectedLetter(null);
               }}
-              className="px-5 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full shadow-md hover:from-red-700 hover:to-red-800 transition-all"
+              className="relative px-4 py-3 bg-gradient-to-b from-red-600 to-red-700 text-white font-semibold shadow-md 
+                         clip-path-bookmark hover:from-red-700 hover:to-red-800 transition-all"
             >
               Delete
             </button>
           )}
           <button
             onClick={() => setSelectedLetter(null)}
-            className="px-5 py-2 bg-gradient-to-r from-gray-400 to-gray-500 text-white rounded-full shadow-md hover:from-gray-500 hover:to-gray-600 transition-all"
-          >
-            Close
-          </button>
+            className="relative px-4 py-3 bg-gradient-to-b from-gray-400 to-gray-500 text-white font-semibold shadow-md 
+                       clip-path-bookmark hover:from-gray-500 hover:to-gray-600 transition-all"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-)}
+      )}
     </>
   );
 }
