@@ -41,7 +41,7 @@ export default function Book({ letter, onClick, delay = 0 }: BookProps) {
         <div className="absolute inset-0 rounded-sm opacity-30 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
         
         {/* Gold spine trim */}
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-400 via-amber-500 to-amber-400" />
+        <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-amber-400 via-amber-500 to-amber-400" />
         
         {/* More detailed stitching */}
         <div className="absolute left-1 top-3 bottom-3 w-px bg-amber-400/50" />
