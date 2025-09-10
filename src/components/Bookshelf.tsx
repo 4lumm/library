@@ -92,9 +92,9 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
       {/* Book modal */}
 {selectedLetter && (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-    <div className="relative w-[90%] max-w-4xl max-h-[90vh] bg-gradient-to-r from-amber-50 to-amber-100 shadow-2xl rounded-xl overflow-hidden border-4 border-amber-700 flex">
+    <div className="relative w-[90%] max-w-4xl h-[90vh] bg-gradient-to-r from-amber-50 to-amber-100 shadow-2xl rounded-xl overflow-hidden border-4 border-amber-700 flex">
       {/* Left Page */}
-      <div className="w-1/2 p-8 font-serif text-amber-900 bg-amber-50 relative overflow-y-auto max-h-[90vh]">
+      <div className="w-1/2 p-8 font-serif text-amber-900 bg-amber-50 relative overflow-y-auto h-full">
         <h3 className="text-2xl font-bold mb-4">{selectedLetter.title}</h3>
         <p className="whitespace-pre-line leading-relaxed">{selectedLetter.content}</p>
       </div>
@@ -103,7 +103,7 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
       <div className="w-1 bg-amber-700 shadow-inner" />
 
       {/* Right Page */}
-      <div className="w-1/2 p-8 font-serif text-amber-900 bg-amber-50 flex flex-col justify-between relative overflow-y-auto max-h-[90vh]">
+      <div className="w-1/2 p-8 font-serif text-amber-900 bg-amber-50 flex flex-col justify-between relative overflow-y-auto h-full">
         <div>
           <h4 className="italic text-amber-800 mb-6">~ {selectedLetter.author}</h4>
           <p className="text-sm text-amber-700">

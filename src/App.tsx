@@ -18,13 +18,13 @@ Let this be our haven, where love stories are written in golden ink and memories
 With all my heart,
 Forever yours`,
   author: 'Library Keeper',
-  createdAt: new Date('2024-01-01').toISOString(),
+  createdAt: new Date('2025-09-10').toISOString(),
   romanNumeral: 'Welcome'
 };
 
 const USERS: User[] = [
-  { username: 'Test1', password: 'Test', role: 'admin' },
-  { username: 'Test2', password: 'Test', role: 'viewer' }
+  { username: 'Zuriel', password: 'Test', role: 'admin' },
+  { username: 'Marian', password: 'Test', role: 'viewer' }
 ];
 
 function App() {
