@@ -62,7 +62,7 @@ export default function BookModal({ letter, onClose, onDelete, userRole }: BookM
             }}
           >
             {/* Subtle parchment texture overlay */}
-            <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-amber-100 via-transparent to-stone-100" />
+            <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-amber-100 via-transparent to-stone-100 pointer-events-none" />
             
             {/* Action buttons */}
             <div className="absolute top-4 right-4 z-10 flex space-x-2">
@@ -73,14 +73,14 @@ export default function BookModal({ letter, onClose, onDelete, userRole }: BookM
                   title="Delete letter"
                 >
                   <Trash2 className="w-4 h-4" />
-                </button>
-              )}
-              <button
-                onClick={handleClose}
+               </button>
+             )}
+             <button
+               onClick={handleClose}
                 className="bg-amber-800/80 hover:bg-amber-800 text-amber-100 w-8 h-8 rounded-full flex items-center justify-center transition-colors shadow-lg"
-              >
-                <X className="w-4 h-4" />
-              </button>
+             >
+               <X className="w-4 h-4" />
+             </button>
             </div>
 
             {/* Letter content */}
