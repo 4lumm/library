@@ -49,3 +49,9 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(217, 119, 6, 0.5);
 }
+
+/* global.css or tailwind.css */
+.clip-path-bookmark {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+  border-radius: 0.25rem 0.25rem 0 0; /* rounded top only */
+}
