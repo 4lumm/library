@@ -90,40 +90,42 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
       </div>
 
       {/* Book modal */}
-      {selectedLetter && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full relative">
-            <div className="grid grid-cols-2 gap-8 bg-amber-50 p-8 rounded-lg shadow-inner min-h-[500px] max-h-[700px]">
-              {/* Left Page */}
-              <div className="relative bg-white/90 rounded-lg p-6 shadow-md border border-amber-200 flex flex-col">
-                <h3 className="text-2xl font-serif font-bold text-amber-900 mb-4 text-center">
-                  {selectedLetter.title}
-                </h3>
-                <p className="text-gray-700 font-serif text-lg leading-relaxed whitespace-pre-line overflow-y-auto pr-2 flex-grow">
-                  {selectedLetter.content}
-                </p>
+{selectedLetter && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+    <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full relative">
 
-               {/* Buttons row */}
-                <div className="flex justify-center space-x-4 mt-6">
-                  {userRole === 'admin' && (
-                    <button
-                      onClick={() => {
-                        onDeleteLetter(selectedLetter.id);
-                        setSelectedLetter(null);
-                      }}
-                      className="px-6 py-2 bg-red-600 text-white font-serif font-semibold clip-path-bookmark shadow-md hover:bg-red-700 transition"
-                    >
-                      Delete
-                    </button>
-                  )}
-                  <button
-                    onClick={() => setSelectedLetter(null)}
-                    className="px-6 py-2 bg-gray-600 text-white font-serif font-semibold clip-path-bookmark shadow-md hover:bg-gray-700 transition"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
+      {/* Bookmark buttons (top-right corner) */}
+      <div className="absolute -top-3 right-4 flex space-x-2">
+        {userRole === 'admin' && (
+          <button
+            onClick={() => {
+              onDeleteLetter(selectedLetter.id);
+              setSelectedLetter(null);
+            }}
+            className="px-4 py-2 bg-red-600 text-white font-serif font-semibold clip-path-bookmark shadow-md hover:bg-red-700 transition"
+          >
+            Delete
+          </button>
+        )}
+        <button
+          onClick={() => setSelectedLetter(null)}
+          className="px-4 py-2 bg-gray-600 text-white font-serif font-semibold clip-path-bookmark shadow-md hover:bg-gray-700 transition"
+        >
+          Close
+        </button>
+      </div>
+
+      {/* Book pages */}
+      <div className="grid grid-cols-2 gap-8 bg-amber-50 p-8 rounded-lg shadow-inner min-h-[500px] max-h-[700px]">
+        {/* Left Page */}
+        <div className="relative bg-white/90 rounded-lg p-6 shadow-md border border-amber-200 flex flex-col">
+          <h3 className="text-2xl font-serif font-bold text-amber-900 mb-4 text-center">
+            {selectedLetter.title}
+          </h3>
+          <p className="text-gray-700 font-serif text-lg leading-relaxed whitespace-pre-line overflow-y-auto pr-2 flex-grow">
+            {selectedLetter.content}
+          </p>
+        </div>
 
         {/* Right Page */}
         <div className="relative bg-white/80 rounded-lg p-6 shadow-md border border-amber-200">
@@ -134,33 +136,10 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
             {new Date(selectedLetter.createdAt).toLocaleString()}
           </p>
         </div>
-
-        {/* Bookmark Buttons */}
-        <div className="absolute top-0 right-6 flex flex-col space-y-3">
-          {userRole === 'admin' && (
-            <button
-              onClick={() => {
-                onDeleteLetter(selectedLetter.id);
-                setSelectedLetter(null);
-              }}
-              className="relative px-4 py-3 bg-gradient-to-b from-red-600 to-red-700 text-white font-semibold shadow-md 
-                         clip-path-bookmark hover:from-red-700 hover:to-red-800 transition-all"
-            >
-              Delete
-            </button>
-          )}
-          <button
-            onClick={() => setSelectedLetter(null)}
-            className="relative px-4 py-3 bg-gradient-to-b from-gray-400 to-gray-500 text-white font-semibold shadow-md 
-                       clip-path-bookmark hover:from-gray-500 hover:to-gray-600 transition-all"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 }
