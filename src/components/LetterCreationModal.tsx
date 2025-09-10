@@ -19,64 +19,53 @@ export default function LetterCreationModal({ onSubmit, onClose }: LetterCreatio
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4 modal-backdrop-fade">
-      <div className="relative max-w-4xl w-full page-flip-open">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="relative max-w-3xl w-full">
         <div 
-          className="aged-paper rounded-2xl deep-shadow p-10 border-2 border-amber-200"
+          className="bg-gradient-to-br from-amber-50 via-stone-50 to-amber-100 rounded-lg shadow-2xl p-8"
           style={{
             backgroundImage: `
+              radial-gradient(circle at 20% 20%, rgba(139, 69, 19, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(101, 67, 33, 0.08) 0%, transparent 50%),
               repeating-linear-gradient(
                 90deg,
                 transparent,
                 transparent 24px,
-                rgba(139, 69, 19, 0.04) 25px,
-                rgba(139, 69, 19, 0.04) 26px,
-                transparent 27px
+                rgba(139, 69, 19, 0.03) 25px
               )
             `
           }}
         >
-          {/* Close button with luxury styling */}
+          {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 bg-gradient-to-b from-amber-800 to-amber-900 hover:from-amber-700 hover:to-amber-800 text-amber-100 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 luxury-shadow hover:scale-110 z-10"
+            className="absolute top-4 right-4 bg-amber-800/80 hover:bg-amber-800 text-amber-100 w-8 h-8 rounded-full flex items-center justify-center transition-colors shadow-lg z-10"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
 
-          {/* Enhanced header with luxury decorations */}
-          <div className="text-center mb-10">
-            <div className="flex items-center justify-center mb-6">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center mb-4">
               <div className="h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent flex-1" />
-              <div className="mx-6 relative">
-                <Feather className="text-amber-700 w-8 h-8 golden-glow" />
-                <div className="absolute -inset-2 bg-amber-200/20 rounded-full blur-md" />
-              </div>
+              <Feather className="mx-4 text-amber-700 w-6 h-6" />
               <div className="h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent flex-1" />
             </div>
             
             <h2 
-              className="text-4xl font-serif text-amber-900 mb-3 tracking-wide"
-              style={{ 
-                fontFamily: 'Cormorant Garamond, serif',
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
-              }}
-            >
-              Compose a New Letter
-            </h2>
-            <p 
-              className="text-amber-700 text-lg"
+              className="text-3xl font-serif text-amber-900 mb-2"
               style={{ fontFamily: 'Cormorant Garamond, serif' }}
             >
-              Let your heart speak through ink and parchment
-            </p>
+              Write a New Letter
+            </h2>
+            <p className="text-amber-700">Pour your heart onto parchment</p>
           </div>
 
-          {/* Enhanced form with luxury styling */}
-          <form onSubmit={handleSubmit} className="space-y-8">
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label 
-                className="block text-amber-800 text-xl font-serif font-medium mb-3"
+                className="block text-amber-800 text-lg font-serif font-medium mb-2"
                 style={{ fontFamily: 'Cormorant Garamond, serif' }}
               >
                 Letter Title
@@ -85,59 +74,53 @@ export default function LetterCreationModal({ onSubmit, onClose }: LetterCreatio
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-6 py-4 rounded-xl border-2 border-amber-300 focus:border-amber-500 focus:ring-4 focus:ring-amber-200 bg-white/90 text-amber-900 placeholder-amber-500 transition-all text-xl luxury-shadow"
+                className="w-full px-4 py-3 rounded-lg border border-amber-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 bg-white/80 text-amber-900 placeholder-amber-500 transition-all text-lg"
                 style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                placeholder="Give your letter a beautiful name..."
+                placeholder="Give your letter a name..."
                 required
               />
             </div>
 
             <div>
               <label 
-                className="block text-amber-800 text-xl font-serif font-medium mb-3"
+                className="block text-amber-800 text-lg font-serif font-medium mb-2"
                 style={{ fontFamily: 'Cormorant Garamond, serif' }}
               >
-                Your Heartfelt Message
+                Your Message
               </label>
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                rows={14}
-                className="w-full px-6 py-4 rounded-xl border-2 border-amber-300 focus:border-amber-500 focus:ring-4 focus:ring-amber-200 bg-white/90 text-amber-900 placeholder-amber-500 transition-all resize-none text-xl leading-relaxed luxury-shadow custom-scrollbar"
-                style={{ 
-                  fontFamily: 'Cormorant Garamond, serif',
-                  lineHeight: '1.8'
-                }}
-                placeholder="My dearest love..."
+                rows={12}
+                className="w-full px-4 py-3 rounded-lg border border-amber-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 bg-white/80 text-amber-900 placeholder-amber-500 transition-all resize-none text-lg leading-relaxed"
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                placeholder="Dear..."
                 required
               />
             </div>
 
-            <div className="flex justify-end space-x-6 pt-4">
+            <div className="flex justify-end space-x-4">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-8 py-4 bg-gradient-to-b from-stone-600 to-stone-700 hover:from-stone-700 hover:to-stone-800 text-white rounded-xl transition-all duration-300 font-medium text-lg luxury-shadow hover:scale-105"
-                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                className="px-6 py-3 bg-stone-600 text-white rounded-lg hover:bg-stone-700 transition-colors font-medium"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-8 py-4 luxury-button text-white rounded-xl font-medium text-lg flex items-center space-x-3 hover:scale-105"
-                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                className="px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-lg hover:from-amber-700 hover:to-amber-800 transition-all duration-300 font-medium shadow-lg hover:shadow-xl flex items-center space-x-2"
               >
-                <Heart className="w-5 h-5" />
-                <span>Add to Our Library</span>
+                <Heart className="w-4 h-4" />
+                <span>Add to Library</span>
               </button>
             </div>
           </form>
 
-          {/* Enhanced decorative elements */}
-          <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden rounded-2xl opacity-20">
-            <div className="absolute top-1/4 right-1/3 w-16 h-16 bg-amber-200/40 rounded-full blur-xl" />
-            <div className="absolute bottom-1/3 left-1/4 w-12 h-12 bg-stone-300/30 rounded-full blur-lg" />
-            <div className="absolute top-1/2 left-1/2 w-8 h-8 bg-amber-300/35 rounded-full blur-md" />
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden rounded-lg">
+            <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-amber-200/20 rounded-full blur-sm" />
+            <div className="absolute bottom-1/3 left-1/3 w-6 h-6 bg-stone-300/15 rounded-full blur-sm" />
           </div>
         </div>
       </div>
