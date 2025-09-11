@@ -58,7 +58,7 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
                 <div className="flex items-end justify-start px-8 py-4 
                   bg-gradient-to-b from-amber-900/70 via-amber-800/90 to-amber-900 
                  border-b-4 border-amber-700/70 
-                 shadow-inner relative min-h-[160px]
+                 shadow-inner relative min-h-[160px] overflow-visible
                 ">
                   {shelfBooks.map((letter, bookIndex) => (
                     <Book

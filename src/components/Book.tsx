@@ -80,10 +80,11 @@ export default function Book({ letter, onClick, delay = 0 }: BookProps) {
         <div className="absolute bottom-1 right-0 w-1 h-4 bg-black/20 rounded-l-sm" />
 
         {/* Layered magical glow on hover */}
-        <div className="absolute -inset-4 bg-amber-200/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-700 blur-xl -z-10" />
-        <div className="absolute -inset-3 bg-amber-300/40 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-700 blur-lg -z-10" />
-        <div className="absolute -inset-2 bg-amber-400/30 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-700 blur-md -z-10" />
-        <div className="absolute -inset-1 bg-amber-500/20 rounded-sm opacity-0 group-hover:opacity-100 transition-all duration-700 blur-sm -z-10" />
+        {/* Softer magical glow on hover */}
+<div className="absolute -inset-4 bg-amber-200/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-700 blur-2xl -z-10" />
+<div className="absolute -inset-3 bg-amber-300/15 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-700 blur-xl -z-10" />
+<div className="absolute -inset-2 bg-amber-400/10 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-700 blur-lg -z-10" />
+<div className="absolute -inset-1 bg-amber-500/5 rounded-sm opacity-0 group-hover:opacity-100 transition-all duration-700 blur-md -z-10" />
       </div>
 
       {/* Animated book title tooltip */}
