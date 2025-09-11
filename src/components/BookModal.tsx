@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { X, Heart, Calendar, User, Trash2 } from 'lucide-react';
 import { Letter } from '../types';
 
@@ -11,16 +11,16 @@ interface BookModalProps {
 
 export default function BookModal({ letter, onClose, onDelete, userRole }: BookModalProps) {
   const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleString('en-PH', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    timeZone: 'Asia/Manila'
-  }) + ' (PHT)';
-};
+    const date = new Date(dateString);
+    return date.toLocaleString('en-PH', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'Asia/Manila'
+    }) + ' (PHT)';
+  };
 
   const handleDelete = () => {
     if (letter.id === 'welcome') return; // Protect welcome letter
@@ -33,6 +33,11 @@ export default function BookModal({ letter, onClose, onDelete, userRole }: BookM
   const handleClose = () => {
     onClose();
   };
+
+  // --- Page handling for long letters ---
+  const [page, setPage] = useState(0);
+  const charsPerPage = 1000; // adjust as needed
+  const pages = letter.content.match(new RegExp(`.{1,${charsPerPage}}`, 'gs')) || [];
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -98,12 +103,13 @@ export default function BookModal({ letter, onClose, onDelete, userRole }: BookM
                   {letter.title}
                 </h2>
                 
-                <div className="flex items-center justify-center space-x-6 text-sm text-gray-700">
-                  <div className="flex items-center space-x-2">
+                {/* Credits under the title */}
+                <div className="text-sm text-gray-700 mt-2 space-y-1">
+                  <div className="flex items-center justify-center space-x-2">
                     <User className="w-4 h-4" />
                     <span>{letter.author}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center justify-center space-x-2">
                     <Calendar className="w-4 h-4" />
                     <span>{formatDate(letter.createdAt)}</span>
                   </div>
@@ -113,15 +119,38 @@ export default function BookModal({ letter, onClose, onDelete, userRole }: BookM
               {/* Letter content */}
               <div className="max-w-2xl mx-auto">
                 <div 
-                  className="text-gray-900 leading-relaxed whitespace-pre-wrap text-lg"
+                  className="text-gray-900 leading-relaxed whitespace-pre-wrap break-words text-lg"
                   style={{ 
                     fontFamily: 'Cormorant Garamond, serif',
                     lineHeight: '1.8',
                     textShadow: '0 1px 2px rgba(0, 0, 0, 0.05)'
                   }}
                 >
-                  {letter.content}
+                  {pages[page]}
                 </div>
+
+                {/* Page navigation */}
+                {pages.length > 1 && (
+                  <div className="flex justify-between items-center mt-6">
+                    <button
+                      onClick={() => setPage((p) => Math.max(0, p - 1))}
+                      disabled={page === 0}
+                      className="px-3 py-1 bg-amber-700 text-white rounded disabled:opacity-50"
+                    >
+                      Previous
+                    </button>
+                    <span className="text-sm text-gray-600">
+                      Page {page + 1} of {pages.length}
+                    </span>
+                    <button
+                      onClick={() => setPage((p) => Math.min(pages.length - 1, p + 1))}
+                      disabled={page === pages.length - 1}
+                      className="px-3 py-1 bg-amber-700 text-white rounded disabled:opacity-50"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Decorative footer */}
