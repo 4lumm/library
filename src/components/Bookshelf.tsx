@@ -12,7 +12,7 @@ interface BookshelfProps {
 export default function Bookshelf({ letters, onDeleteLetter, userRole }: BookshelfProps) {
   const [selectedLetter, setSelectedLetter] = useState<Letter | null>(null);
 
-  const booksPerShelf = 15;
+  const booksPerShelf = 17;
   const shelves = Math.max(6, Math.ceil(letters.length / booksPerShelf));
 
   return (
