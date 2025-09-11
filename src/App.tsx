@@ -69,7 +69,7 @@ function App() {
       title,
       content,
       author: currentUser || 'Anonymous',
-      createdAt: new Date(Date.now() + (8 * 60 * 60 * 1000)).toISOString(), // Philippine time
+      createdAt: new Date().toISOString(), // store UTC ISO, format for display later Philippine time
       romanNumeral: toRomanNumeral(letters.length) // This will be the next number
     };
 

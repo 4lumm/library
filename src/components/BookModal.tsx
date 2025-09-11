@@ -11,18 +11,16 @@ interface BookModalProps {
 
 export default function BookModal({ letter, onClose, onDelete, userRole }: BookModalProps) {
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    // Convert to Philippine timezone (GMT+8)
-    const philippineTime = new Date(date.getTime() + (8 * 60 * 60 * 1000));
-    return philippineTime.toLocaleString('en-PH', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZone: 'Asia/Manila'
-    }) + ' (PHT)';
-  };
+  const date = new Date(dateString);
+  return date.toLocaleString('en-PH', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Asia/Manila'
+  }) + ' (PHT)';
+};
 
   const handleDelete = () => {
     if (letter.id === 'welcome') return; // Protect welcome letter
