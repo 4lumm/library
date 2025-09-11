@@ -92,10 +92,10 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
       {/* Book modal */}
 {selectedLetter && (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-    <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full relative">
-
-      {/* Bookmark buttons (top-right corner) */}
-      <div className="absolute -top-3 right-4 flex space-x-2">
+    <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative z-60">
+      <h3 className="text-xl font-semibold mb-2">{selectedLetter.title}</h3>
+      <p className="text-gray-700 mb-4 whitespace-pre-line">{selectedLetter.content}</p>
+      <div className="flex justify-end space-x-2">
         {userRole === 'admin' && (
           <button
             onClick={() => {
