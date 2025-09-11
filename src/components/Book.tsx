@@ -20,32 +20,36 @@ const bookTextures = [
 
 export default function Book({ letter, onClick, delay = 0 }: BookProps) {
   const isWelcome = letter.id === 'welcome';
-  const textureIndex = isWelcome ? 0 : Math.abs(letter.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % bookTextures.length;
-  
+  const textureIndex = isWelcome
+    ? 0
+    : Math.abs(
+        letter.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
+      ) % bookTextures.length;
+
   const texture = bookTextures[textureIndex];
 
   return (
     <div
-      className="group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-translate-y-3"
+      className="group cursor-pointer transform transition-all duration-700 hover:scale-125 hover:-translate-y-6 hover:rotate-2 hover:z-10"
       onClick={onClick}
       style={{ animationDelay: `${delay}s` }}
     >
-      <div 
+      <div
         className={`
-          relative w-14 h-36 mx-1 rounded-sm shadow-lg hover:shadow-2xl transition-all duration-300
+          relative w-14 h-36 mx-1 rounded-sm shadow-lg hover:shadow-2xl transition-all duration-700
           ${texture}
           hover:brightness-110
         `}
       >
         {/* Enhanced book spine texture */}
         <div className="absolute inset-0 rounded-sm opacity-30 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-        
+
         {/* More detailed stitching */}
         <div className="absolute left-1 top-3 bottom-3 w-px bg-amber-400/50" />
         <div className="absolute right-1 top-3 bottom-3 w-px bg-amber-400/50" />
         <div className="absolute left-2 top-4 bottom-4 w-px bg-amber-300/30" />
         <div className="absolute right-2 top-4 bottom-4 w-px bg-amber-300/30" />
-        
+
         {/* Roman numeral */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="transform -rotate-90 origin-center">
@@ -56,7 +60,7 @@ export default function Book({ letter, onClick, delay = 0 }: BookProps) {
               style={{
                 textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
                 fontSize: isWelcome ? '10px' : '12px',
-                letterSpacing: '1px'
+                letterSpacing: '1px',
               }}
             >
               {letter.romanNumeral}
@@ -69,21 +73,31 @@ export default function Book({ letter, onClick, delay = 0 }: BookProps) {
         <div className="absolute bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" />
         <div className="absolute top-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-300/40 to-transparent" />
         <div className="absolute bottom-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-300/40 to-transparent" />
-        
+
         {/* Worn edges and aging */}
         <div className="absolute inset-0 rounded-sm shadow-inner" />
         <div className="absolute top-1 right-0 w-1 h-4 bg-black/20 rounded-l-sm" />
         <div className="absolute bottom-1 right-0 w-1 h-4 bg-black/20 rounded-l-sm" />
-        
-        {/* Enhanced magical glow on hover */}
-        <div className="absolute -inset-2 bg-amber-200/30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md -z-10" />
-        <div className="absolute -inset-1 bg-amber-300/20 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm -z-10" />
+
+        {/* Layered magical glow on hover */}
+        <div className="absolute -inset-4 bg-amber-200/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-700 blur-xl -z-10" />
+        <div className="absolute -inset-3 bg-amber-300/40 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-700 blur-lg -z-10" />
+        <div className="absolute -inset-2 bg-amber-400/30 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-700 blur-md -z-10" />
+        <div className="absolute -inset-1 bg-amber-500/20 rounded-sm opacity-0 group-hover:opacity-100 transition-all duration-700 blur-sm -z-10" />
       </div>
-      
-      {/* Enhanced book title tooltip */}
-      <div className="absolute -top-14 left-1/2 transform -translate-x-1/2 bg-amber-900 text-amber-100 px-4 py-2 rounded-lg text-sm font-serif opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl z-20 pointer-events-none">
+
+      {/* Animated book title tooltip */}
+      <div
+        className="absolute -top-20 left-1/2 transform -translate-x-1/2 
+        bg-gradient-to-b from-amber-800 to-amber-900 text-amber-100 px-6 py-4 
+        rounded-2xl text-sm font-serif opacity-0 group-hover:opacity-100 
+        transition-all duration-700 whitespace-nowrap shadow-2xl z-20 
+        pointer-events-none border-2 border-amber-500"
+      >
         {letter.title}
-        <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-amber-900" />
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-8 border-transparent border-t-amber-800" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-300/15 to-transparent rounded-2xl" />
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-200/10 via-transparent to-transparent rounded-2xl" />
       </div>
     </div>
   );
