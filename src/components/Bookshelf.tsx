@@ -58,8 +58,22 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
                 <div className="flex items-end justify-start px-8 py-4 
                   bg-gradient-to-b from-amber-900/70 via-amber-800/90 to-amber-900 
                  border-b-4 border-amber-700/70 
-                 shadow-inner relative min-h-[160px]
-                ">
+                 shadow-inner relative min-h-[160px]"
+              >
+                {/* Subtle golden highlight across the shelf */}
+  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-yellow-200/40 to-transparent" />
+
+  {/* Warm ambient glow */}
+  <div className="absolute inset-0 bg-amber-500/5 rounded-lg blur-md pointer-events-none" />
+
+  {shelfBooks.map((letter, bookIndex) => (
+    <Book
+      key={letter.id}
+      letter={letter}
+      onClick={() => setSelectedLetter(letter)}
+      delay={bookIndex * 0.1}
+    />
+    ))}
                   {shelfBooks.map((letter, bookIndex) => (
                     <Book
                       key={letter.id}
