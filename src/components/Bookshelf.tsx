@@ -20,7 +20,7 @@ export default function Bookshelf({ letters, onDeleteLetter, userRole }: Bookshe
       <div className="relative max-w-6xl mx-auto">
         {/* Main bookshelf structure */}
         <div 
-          className="relative bg-gradient-to-b from-amber-900 via-amber-800 to-amber-900 rounded-xl shadow-2xl overflow-hidden border-4 border-amber-700"
+          className="relative bg-gradient-to-b from-amber-900 via-amber-800 to-amber-900 rounded-xl shadow-2xl overflow-visible border-4 border-amber-700"
           style={{
             backgroundImage: `
               linear-gradient(45deg, rgba(92, 51, 23, 0.1) 25%, transparent 25%),
