@@ -1,6 +1,6 @@
 const API_URL = "https://api.jsonsilo.com/api/v1/files";
 const API_KEY = "xzTBpAGQoDdJekRfgz7sBz4Qs5f6e1yEAqSHhmIbIF";
-const FILE_ID = "libraryLetters"; // must match what you created in jsonsilo
+const FILE_ID = "ca2582c2-a9a5-4399-b021-a5899c240cc1"; // must match what you created in jsonsilo
 
 // Load letters
 export async function fetchLetters() {
