@@ -3,6 +3,7 @@ import { BookOpen, Feather, LogOut } from 'lucide-react';
 import LoginPage from './components/LoginPage';
 import BookshelfPage from './components/BookshelfPage';
 import { Letter, User } from './types';
+import { fetchLetters, saveLetters } from "./api";
 
 const WELCOME_LETTER: Letter = {
   id: 'welcome',
@@ -30,19 +31,20 @@ function App() {
   const [isCreating, setIsCreating] = useState(false);
 
   useEffect(() => {
-    const savedLetters = localStorage.getItem('libraryLetters');
-    if (savedLetters) {
-      const parsed = JSON.parse(savedLetters);
-      setLetters([WELCOME_LETTER, ...parsed.filter((l: Letter) => l.id !== 'welcome')]);
+    async function load() {
+      const stored = await fetchLetters();
+     setLetters([WELCOME_LETTER, ...stored.filter((l: Letter) => l.id !== "welcome")]);
     }
-
-    const savedUser = localStorage.getItem('currentUser');
-    const savedRole = localStorage.getItem('userRole') as 'admin' | 'viewer';
+    load();
+  
+    const savedUser = localStorage.getItem("currentUser");
+    const savedRole = localStorage.getItem("userRole") as "admin" | "viewer";
     if (savedUser && savedRole) {
       setCurrentUser(savedUser);
       setUserRole(savedRole);
     }
   }, []);
+
 
   const handleLogin = (username: string, password: string): boolean => {
     const user = USERS.find(u => u.username === username && u.password === password);
@@ -78,7 +80,7 @@ function App() {
     
     // Save to localStorage (excluding welcome letter)
     const lettersToSave = updatedLetters.filter(l => l.id !== 'welcome');
-    localStorage.setItem('libraryLetters', JSON.stringify(lettersToSave));
+    saveLetters(lettersToSave).catch(console.error);
   };
 
   const deleteLetter = (letterId: string) => {
@@ -89,7 +91,7 @@ function App() {
     
     // Save to localStorage (excluding welcome letter)
     const lettersToSave = updatedLetters.filter(l => l.id !== 'welcome');
-    localStorage.setItem('libraryLetters', JSON.stringify(lettersToSave));
+    saveLetters(lettersToSave).catch(console.error);
   };
 
   const toRomanNumeral = (num: number): string => {
