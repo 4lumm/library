@@ -1,58 +1,29 @@
-const API_URL = "https://api.jsonsilo.com/api/v1/files";
+const FILE_ID = "ca2582c2-a9a5-4399-b021-a5899c240cc1";
 const API_KEY = "xzTBpAGQoDdJekRfgz7sBz4Qs5f6e1yEAqSHhmIbIF";
-const FILE_ID = "ca2582c2-a9a5-4399-b021-a5899c240cc1"; // must match what you created in jsonsilo
+const BASE_URL = `https://api.jsonsilo.com/${FILE_ID}`;
 
-// Load letters
+// Fetch letters from jsonsilo
 export async function fetchLetters() {
-  const res = await fetch(`${API_URL}/${FILE_ID}`, {
-    headers: { Authorization: `Bearer ${API_KEY}` }
+  const res = await fetch(BASE_URL, {
+    headers: {
+      "X-SILO-KEY": API_KEY,
+      "Content-Type": "application/json",
+    },
   });
-
-  if (res.status === 404) {
-    // File doesn't exist yet → create it
-    await createLettersFile();
-    return [];
-  }
-
-  if (!res.ok) {
-    console.error("Failed to fetch letters", res.status);
-    return [];
-  }
-
-  return await res.json();
+  if (!res.ok) throw new Error("Failed to fetch letters");
+  return res.json();
 }
 
-// Save letters
+// Save (overwrite) letters on jsonsilo
 export async function saveLetters(letters: any) {
-  const res = await fetch(`${API_URL}/${FILE_ID}`, {
+  const res = await fetch(BASE_URL, {
     method: "PUT",
     headers: {
-      Authorization: `Bearer ${API_KEY}`,
-      "Content-Type": "application/json"
+      "X-SILO-KEY": API_KEY,
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(letters)
+    body: JSON.stringify(letters),
   });
-
-  if (!res.ok) {
-    console.error("Failed to save letters", res.status);
-  }
-}
-
-// Create file if missing
-async function createLettersFile() {
-  const res = await fetch(API_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${API_KEY}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      fileId: FILE_ID,
-      content: []
-    })
-  });
-
-  if (!res.ok) {
-    console.error("Failed to create letters file", res.status);
-  }
+  if (!res.ok) throw new Error("Failed to save letters");
+  return res.json();
 }
