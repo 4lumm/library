@@ -3,7 +3,7 @@ import { BookOpen, Feather, LogOut } from 'lucide-react';
 import LoginPage from './components/LoginPage';
 import BookshelfPage from './components/BookshelfPage';
 import { Letter, User } from './types';
-import { fetchLetters, saveLetters } from "./api";
+import { fetchLetters, saveLetters } from "./components/api";
 
 const WELCOME_LETTER: Letter = {
   id: 'welcome',
